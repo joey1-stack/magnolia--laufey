@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 17th Birthday Alicia! 🎉</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 50%, #d8b4fe 100%); }
+        .font-handwritten { font-family: 'Caveat', cursive; }
+        [x-cloak] { display: none !important; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(var(--rot, -2deg)); } 50% { transform: translateY(-6px) rotate(var(--rot-hover, 1deg)); } }
+        .polaroid-float { animation: float 4s ease-in-out infinite; }
+        @keyframes floatDecor1 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(10deg); } }
+        .decor-float-1 { animation: floatDecor1 5s ease-in-out infinite; }
+    </style>
+</head>
+<body class="antialiased text-gray-800 min-h-screen flex items-center justify-center p-4 overflow-hidden select-none relative"
+      x-data="{
+        namaPanggilan: 'ALICIA NAA ATUU 💖',
+        namaLengkap: 'Alicia Alexandra',
+        ucapanSelamat: '', 
+        teksWishes: 'Happy sweet seventeen, Alicia Alexandra 💕\n\nI hope every day brings you something that makes your mood a little better. I hope this year gives you more reasons to laugh, more memories worth keeping, and more moments where you catch yourself smiling for no reason at all.\n\nhopefully, this message managed to earn at least one smile from you too.',
+        teksBawahWishes: '', 
+        foto1: 'https://cdn.discordapp.com/attachments/1434111588016717876/1510603393813708920/IMG_9546.jpg?ex=6a1d6a8a&is=6a1c190a&hm=818888325314b479fc42f3f54bed50e4da776c5ed725bdf437582191e8a4cbec&',
+        caption1: 'ciaa naa atuuu!!',
+        foto2: 'https://cdn.discordapp.com/attachments/1434111588016717876/1510603395092713532/IMG_9544.jpg?ex=6a1d6a8b&is=6a1c190b&hm=8ce45fd6a2c74c46188c148b46a74bff5509f0b126c268411933e548afc36a29&',
+        caption2: 'kokk cantik bangett siii',
+        foto3: 'https://cdn.discordapp.com/attachments/1434111588016717876/1510603752695005234/IMG_9543.jpg?ex=6a1d6ae0&is=6a1c1960&hm=da569871d896a367145f5c6a8d1209a3eb3b919540291e1027e9498ed2863911',
+        caption3: 'selesai latihan cheers kok ttp lucuu siii',
+        foto4: 'https://cdn.discordapp.com/attachments/1434111588016717876/1510603394568552448/IMG_9545.jpg?ex=6a1d6a8a&is=6a1c190a&hm=8741a877a271e10cdd71e74f80d14719dcf82fee5611f3f1d8c5b0738ab7febe&',
+        caption4: '💜',
+        stat1_nama: 'Cute Level',
+        stat1_persen: '99.9%',
+        stat2_nama: 'BAD MOOD',
+        stat2_persen: '75% kenapa nyak?',
+        stat2_bar: '75%', 
+        stat3_nama: 'utas 17 tahun🤨',
+        stat3_persen: '100% (Siap KTP)',
+        stat3_bar: '100%',
+        stat4_nama: 'Potensi Encok & Jompo Mulai Hari Ini',
+        stat4_persen: '85% (Backspot😭)',
+        stat4_bar: '85%',
+        sumberStats: '*Data akurat (kayanya) hasil riset repostan tiktok 😭 ',
+        teksSebelumTiup: `Don't forget to make a wish first... though if you wish to spend more time with me, I'm totally okay with that 😋✌️`,
+        teksSesudahTiup: `Hope there are lots of things that make you smile this year... hopefully I'm one of them. 🤭`,
+        
+        linkMusik: 'musikku MP3.mp3', 
+
+        step: 'start', 
+        countdown: 1, 
+        activeTab: 'wishes', 
+        blown: false,
+        isPlaying: false,
+        mulaiWeb() {
+            this.step = 'intro';
+            let timer = setInterval(() => {
+                if(this.countdown < 3) { this.countdown++; } 
+                else { 
+                    clearInterval(timer); 
+                    this.step = 'surprise'; 
+                    this.triggerConfetti(); 
+                    this.startMusicAutomatically();
+                }
+            }, 1000);
+        },
+        triggerConfetti() {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#a855f7', '#c084fc', '#e9d5ff'] });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#a855f7', '#c084fc', '#e9d5ff'] });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+        },
+        startMusicAutomatically() {
+            let audio = document.getElementById('bg-music');
+            if(!this.isPlaying) {
+                audio.play().then(() => {
+                    this.isPlaying = true;
+                }).catch(e => console.log('Musik diblokir browser, menunggu interaksi pengguna.'));
+            }
+        },
+        toggleMusic() {
+            let audio = document.getElementById('bg-music');
+            if(this.isPlaying) { audio.pause(); } else { audio.play().catch(e => console.log('Musik butuh interaksi user')); }
+            this.isPlaying = !this.isPlaying;
+        }
+      }">
+
+    <audio id="bg-music" loop :src="linkMusik"></audio>
+
+    <!-- SLIDE 1: START -->
+    <div x-show="step === 'start'" class="text-center space-y-6 max-w-sm mx-auto p-8 bg-white/70 backdrop-blur-md rounded-3xl shadow-xl border border-white/50 z-10">
+        <div class="text-6xl animate-pulse">🎁</div>
+        <h2 class="text-2xl font-black text-purple-600">A little message for Alicia Alexandra...</h2>
+        <button @click="mulaiWeb()" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition transform active:scale-95 cursor-pointer">
+            Unlock It Now
+        </button>
+    </div>
+
+    <!-- SLIDE 2: COUNTDOWN -->
+    <div x-show="step === 'intro'" x-cloak class="text-center space-y-4 z-10">
+        <div class="text-8xl font-black text-purple-600 animate-bounce" x-text="countdown"></div>
+    </div>
+
+    <!-- SLIDE 3: SURPRISE BUTTON -->
+    <div x-show="step === 'surprise'" x-cloak class="text-center space-y-6 max-w-sm mx-auto p-6 bg-white/70 backdrop-blur-md rounded-3xl shadow-xl border border-white/50 z-10">
+        <div class="text-7xl animate-bounce">🎂</div>
+        <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-600">HAPPY BIRTHDAY<br><span x-text="namaPanggilan"></span></h1>
+        <button @click="step = 'main';" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition transform active:scale-95 cursor-pointer">
+            Unlock It Now 🎁
+        </button>
+    </div>
+
+    <!-- SLIDE 4: MAIN DASHBOARD -->
+    <div x-show="step === 'main'" x-cloak class="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-5 w-full max-w-md min-h-[580px] flex flex-col justify-between border border-white/50 relative z-10 transition duration-500 hover:scale-[1.01]">
+        
+        <!-- NAVIGATION TABS -->
+        <div class="grid grid-cols-4 gap-1 bg-purple-100/60 p-1 rounded-2xl text-[11px] font-bold text-center mb-4">
+            <button @click="activeTab = 'wishes'" :class="activeTab === 'wishes' ? 'bg-purple-500 text-white shadow-md' : 'text-purple-700'" class="py-2.5 rounded-xl transition-all cursor-pointer">💌 Wishes</button>
+            <button @click="activeTab = 'gallery'" :class="activeTab === 'gallery' ? 'bg-purple-500 text-white shadow-md' : 'text-purple-700'" class="py-2.5 rounded-xl transition-all cursor-pointer">📸 Gallery</button>
+            <button @click="activeTab = 'fun'" :class="activeTab === 'fun' ? 'bg-purple-500 text-white shadow-md' : 'text-purple-700'" class="py-2.5 rounded-xl transition-all cursor-pointer">📊 Stats</button>
+            <button @click="activeTab = 'gift'" :class="activeTab === 'gift' ? 'bg-purple-500 text-white shadow-md' : 'text-purple-700'" class="py-2.5 rounded-xl transition-all cursor-pointer">🎁 Gift</button>
+        </div>
+
+        <!-- MAIN MOUNT CONTAINER -->
+        <div class="flex-grow flex items-center justify-center py-2">
+            
+            <!-- TAB: WISHES -->
+            <div x-show="activeTab === 'wishes'" class="text-center space-y-4">
+                <p class="text-gray-600 text-sm font-medium leading-relaxed px-2 whitespace-pre-line" x-text="teksWishes"></p>
+            </div>
+            
+            <!-- TAB: GALLERY -->
+            <div x-show="activeTab === 'gallery'" class="w-full" x-cloak>
+                <div class="grid grid-cols-2 gap-3 max-w-[300px] mx-auto">
+                    <div class="polaroid-float bg-white p-1.5 pb-5 rounded-md shadow-md border border-purple-50" style="--rot: -3deg;"><img :src="foto1" class="w-full aspect-[4/3] object-cover rounded-sm"><p class="text-[10px] font-handwritten mt-2 text-center text-purple-600" x-text="caption1"></p></div>
+                    <div class="polaroid-float bg-white p-1.5 pb-5 rounded-md shadow-md border border-purple-50" style="--rot: 3deg;"><img :src="foto2" class="w-full aspect-[4/3] object-cover rounded-sm"><p class="text-[10px] font-handwritten mt-2 text-center text-purple-600" x-text="caption2"></p></div>
+                    <div class="polaroid-float bg-white p-1.5 pb-5 rounded-md shadow-md border border-purple-50" style="--rot: -2deg;"><img :src="foto3" class="w-full aspect-[4/3] object-cover rounded-sm"><p class="text-[10px] font-handwritten mt-2 text-center text-purple-600" x-text="caption3"></p></div>
+                    <div class="polaroid-float bg-white p-1.5 pb-5 rounded-md shadow-md border border-purple-50" style="--rot: 2deg;"><img :src="foto4" class="w-full aspect-[4/3] object-cover rounded-sm"><p class="text-[10px] font-handwritten mt-2 text-center text-purple-600" x-text="caption4"></p></div>
+                </div>
+            </div>
+
+            <!-- TAB: STATS -->
+            <div x-show="activeTab === 'fun'" class="w-full px-4 space-y-3.5" x-cloak>
+                <div>
+                    <div class="flex justify-between text-xs font-bold text-gray-700"><span x-text="stat1_nama"></span><span class="text-purple-500" x-text="stat1_persen"></span></div>
+                    <div class="bg-purple-100 h-2 rounded-full mt-1 overflow-hidden"><div class="bg-purple-500 h-full rounded-full" style="width: 99.9%"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-bold text-gray-700"><span x-text="stat2_nama"></span><span class="text-indigo-500" x-text="stat2_persen"></span></div>
+                    <div class="bg-purple-100 h-2 rounded-full mt-1 overflow-hidden"><div class="bg-indigo-400 h-full rounded-full" :style="`width: ${stat2_bar}`"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-bold text-gray-700"><span x-text="stat3_nama"></span><span class="text-purple-600" x-text="stat3_persen"></span></div>
+                    <div class="bg-purple-100 h-2 rounded-full mt-1 overflow-hidden"><div class="bg-purple-600 h-full rounded-full" :style="`width: ${stat3_bar}`"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-bold text-gray-700"><span x-text="stat4_nama"></span><span class="text-fuchsia-500" x-text="stat4_persen"></span></div>
+                    <div class="bg-purple-100 h-2 rounded-full mt-1 overflow-hidden"><div class="bg-fuchsia-400 h-full rounded-full" :style="`width: ${stat4_bar}`"></div></div>
+                </div>
+                <p class="text-[10px] text-center text-purple-400/80 italic pt-1" x-text="sumberStats"></p>
+            </div>
+
+            <!-- TAB: GIFT / CAKE -->
+            <div x-show="activeTab === 'gift'" class="text-center space-y-4 w-full px-4" x-cloak>
+                <div class="relative flex justify-center">
+                    <span class="text-6xl" :class="blown ? 'opacity-40 scale-90' : 'animate-bounce'">🎂</span>
+                    <span x-show="!blown" class="absolute top-0 text-xl animate-ping text-yellow-400">🔥</span>
+                </div>
+                <p class="text-gray-600 text-xs font-medium leading-relaxed min-h-[40px]" x-text="blown ? teksSesudahTiup : teksSebelumTiup"></p>
+                <button x-show="!blown" @click="blown = true; triggerConfetti();" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-full mx-auto block text-xs shadow-md transform active:scale-95 transition cursor-pointer">💨 Tiup Lilinnya!</button>
+            </div>
+        </div>
+
+        <!-- FOOTER CONTROLLER -->
+        <div class="flex justify-between items-center mt-4 pt-3 border-t border-purple-100">
+            <button @click="toggleMusic()" class="flex items-center gap-1.5 text-purple-500 hover:text-purple-700 font-bold text-xs cursor-pointer">
+                <span x-text="isPlaying ? '🎵 Musik On' : '🔇 Musik Off'"></span>
+            </button>
+            <span class="text-purple-400 font-handwritten text-lg" x-text="`For ${namaLengkap}`"></span>
+        </div>
+    </div>
+
+    <!-- FLOATING BACKGROUND ITEMS -->
+    <template x-if="step === 'main'">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+            <div class="absolute top-[10%] left-[5%] text-4xl decor-float-1">🦄</div>
+            <div class="absolute top-[8%] right-[6%] text-5xl decor-float-1">💜</div>
+            <div class="absolute bottom-[10%] left-[10%] text-5xl decor-float-1">🧸</div>
+            <div class="absolute bottom-[10%] right-[10%] text-5xl decor-float-1">💖</div>
+        </div>
+    </template>
+
+</body>
+</html>
